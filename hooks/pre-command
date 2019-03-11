@@ -20,6 +20,8 @@ function plugin_read_list() {
   fi
 }
 
+echo "BUILDKITE_PLUGIN_ECR_LOGIN: ${BUILDKITE_PLUGIN_ECR_LOGIN}"
+
 # Check a provided aws-cli version is greater or equal than the current
 function aws_version_ge() {
   local version; version="$(aws --version 2>&1 | awk -F'[/ ]' '{print $2}')"
