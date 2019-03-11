@@ -100,8 +100,9 @@ if [[ "${BUILDKITE_PLUGIN_ECR_LOGIN:-}" =~ ^(true|1)$ ]] ; then
   fi
 
   # shellcheck disable=SC2068
+  echo "Hopefully some logs:"
+  echo "login_args: ${login_args[@]}"
   echo aws ecr get-login ${login_args[@]+"${login_args[@]}"}
-  exit 1
   ecr_login=$(retry "${BUILDKITE_PLUGIN_ECR_RETRIES:-0}" aws ecr get-login ${login_args[@]+"${login_args[@]}"}) || exit $?
 
   # despite all the horror above, if we have docker > 17.06 it still breaks...
